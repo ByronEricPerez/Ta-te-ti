@@ -5,7 +5,6 @@ let indiceBtn;
 
 const btnAlls = document.querySelectorAll('.btn');      
 
-
 const btnActive = function(e, i){
     contadorClick++;
     const btnSelected = (e.target);
@@ -16,18 +15,17 @@ const btnActive = function(e, i){
         btnSelected.style.backgroundColor = '#FDA769';
         btnSelected.style.borderColor = '#473C33';
         element0.push(indiceBtn);
-        alert(element0);
-        resultado();
+        resultado1(element0);
 
     }else{
         icon.classList.add('fa', 'fa-xmark', 'fa-3x');
         btnSelected.style.backgroundColor = '#FEC868';
         btnSelected.style.borderColor = '#473C33';
         element1.push(indiceBtn)
-        alert(element1)
+        resultado2(element1);
     }
-    
 }
+
 const condicionGanadora = [
     [0, 1, 2],
     [3, 4, 5],
@@ -39,37 +37,36 @@ const condicionGanadora = [
     [6, 4, 2],
 ];
 
-const resultado = () =>{
-    let win = false;
-    for(let i = 0 ; i < condicionGanadora.length; i++){
-        const winGame = condicionGanadora[i]
-        console.log(winGame);
+const resultado1 = (element0) =>{
+    for (let i = 0; i < condicionGanadora.length; i++) {
+        let win = true;
+        for (let j = 0; j < condicionGanadora[i].length; j++) {
+            if (!element0.includes(condicionGanadora[i][j])) {
+                win = false;
+                break;
+            }
+        }
+        if (win) {
+            console.log("ganaste");
+            return;
+        }
     }
 }
 
-let ingreso = [1,2,5,7]
-
-// const ganador = () => {    
-//         if(indice[0] === indice[1] && indice[0] === indice[2] && indice[0]){
-//             return true
-//         }else if(indice[3] === indice[4] && indice[3] === indice[5] && indice[3]){
-//             return true
-//         }else if(indice[6] === indice[7] && indice[6] === indice[8] && indice[6]){
-//             return true
-//         }else if(indice[0] === indice[3] && indice[0] === indice[6] && indice[0]){
-//             return true
-//         }else if(indice[1] === indice[4] && indice[1] === indice[7] && indice[1]){
-//             return true
-//         }else if(indice[2] === indice[5] && indice[2] === indice[8] && indice[2]){
-//             return true
-//         }else if(indice[0] === indice[4] && indice[0] === indice[8] && indice[0]){
-//             return true
-//         }else if(indice[6] === indice[4] && indice[6] === indice[2] && indice[6]){
-//             return true
-//         }else{
-//             return false
-//         }
-// }
-
+const resultado2 = (element1) =>{
+    for (let i = 0; i < condicionGanadora.length; i++) {
+        let win = true;
+        for (let j = 0; j < condicionGanadora[i].length; j++) {
+            if (!element1.includes(condicionGanadora[i][j])) {
+                win = false;
+                break;
+            }
+        }
+        if (win) {
+            console.log("ganaste");
+            return;
+        }
+    }
+}
 
 btnAlls.forEach((element, i) => element.addEventListener('click', (e) =>btnActive(e,i)));
